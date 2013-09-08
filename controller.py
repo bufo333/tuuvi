@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, g, session, flash, \
      redirect, url_for, abort
 from flask_openid import OpenID
@@ -54,7 +53,7 @@ class User(Base):
         self.email = email
         self.openid = openid
 
-    
+
 
 class Group(Base):
     __tablename__ = 'groups'
@@ -75,11 +74,11 @@ class Group(Base):
         return [member.name for member in self.members]
 
     def __add_member(self,value):
-        
+
         try:
             for member in self.members:
                 if member.id == value.id:
-                    self.members.remove(value) 
+                    self.members.remove(value)
                     raise Breakloop
             self.members.append(value)
         except Breakloop:
@@ -241,13 +240,13 @@ def determin_groups(offset,page=1):
 @app.route('/groups/<int:page>', methods=['GET'])
 def groups_view(page=1,offset=0):
     page=page
-    
+
 
     menu=False
     if page == 1:
         nextp = page
         prevp = page
-        (groups,limit) = determin_groups(0,page) 
+        (groups,limit) = determin_groups(0,page)
         if (len(groups)) == 0:
             session['offset'] = 0
             print " equal to 0"
@@ -258,23 +257,23 @@ def groups_view(page=1,offset=0):
             print "group list   ", len(groups)
             print "page ", page
             groups = groups[:10]
-            
 
-        
+
+
     else:
 
         prevp = page -1
-        (groups,limit) = determin_groups(session['offset'],page) 
+        (groups,limit) = determin_groups(session['offset'],page)
         if (len(groups)) > limit:
             nextp = page + 1
             session['offset'] = (len(groups)-1)
-        if (len(groups))<= limit and len(groups) > 0:            
+        if (len(groups))<= limit and len(groups) > 0:
             nextp = page
             session['offset'] = (len(groups)-1)
             prevp = page - 1
             print "groups < limit ",(len(groups)-1)
- 
-     
+
+
     if g.user:
         for group in groups:
             if group[0].user_id == g.user.id:
@@ -291,7 +290,7 @@ def groups_view(page=1,offset=0):
 def groups_post(page=1):
     """Lets a user search for and join groups"""
     menu = False
-        
+
     if 'leave' in request.form:
         print request.form['group_to_leave']
         group = Group.query.filter_by(id=int(request.form['group_to_leave'])).first()
@@ -338,11 +337,11 @@ def group_detail_view(name=None):
     print name
     return render_template('group.html',group=group)
 
-    
+
 
 
 
 
 if __name__ == '__main__':
     init_db()
-    app.run(host="192.168.109.108", port=80)
+    app.run()
