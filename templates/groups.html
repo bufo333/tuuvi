@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block body %}
+<div id=form>
+{% if g.user %}
+
+<form action="" method=post>
+  <dl>
+    <dt>Group name:
+      <dd><input type=text name=name size=30 value="{{ form['name'] }}">
+        <dt>Description
+          <dd><input type=text name=desc size=80 value="{{ form['desc'] }}">
+        <dt>Catagory
+
+  </catagory>
+  <p>
+    <input type=submit name=add value="Add Group">
+</form>
+{% endif %}
+
+
+<div id=Grouptable>
+<form action="" method=post>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Founder</th>
+    {% if g.user %}
+    <th>Member</th>
+    {% endif %}
+    {% if menu %}
+    <th>Delete</th>
+    {% endif %}
+
+  </tr>
+{% for group in groups %}
+  <tr>
+    <td><a href="/group/home/{{ group[0].name }}">{{ group[0].name }}</a></td>
+    <td>{{ group[0].description }}</td>
+    <td>{{ group[0].founder.name }}</td>
+
+    {% if g.user %}
+    {% if group[1] %}
+    <td>
+      <form action="" method=post>
+        <input type=hidden name=group_to_leave value="{{ group[0].id }}"></input>
+        <input type=submit name=leave value="Leave Group"></input>
+      </form>
+    </td>
+    {% endif %}
+    {% if not group[1] %}
+    <td>
+    <form action="" method=post>
+      <input type=hidden name=group_to_leave value="{{ group[0].id }}"></input>
+      <input type=submit name=leave value="Join"></input>
+    </form>
+    </td>
+    {% endif %}
+    {% endif %}
+
+    {% if group[2] %}
+    <td><input type=checkbox name=do_delete value="{{ group[0].id }}"></td>
+      {% endif %}
+</td>
+  </tr>
+
+{% endfor %}
+</table>
+{{ offset }}
+{% if g.user.openid %}
+<input type=submit name=delete value="delete">
+{% endif %}
+</form>
+{% if nextp > page  %}
+<a href="/groups/{{ nextp }}">Next</a>
+{% endif %}
+{% if prevp < page %}
+<a href="/groups/{{ prevp }}">Prev</a>
+{% endif %}
+</div>
+</div>
+
+{% endblock %}

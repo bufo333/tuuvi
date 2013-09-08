@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>{% block title %}Welcome{% endblock %} | Tuuvy.com</title>
+
+    {% block header %}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="page">
+
+      <div class="header">
+        <h1><img src="static/images/banner.jpg" alt="Tuuvy.com"></h1>
+        <div id="menu">
+          <ul class=navigation>
+            <li><a href="{{ url_for('index') }}">overview</a>
+            <li><a href="{{ url_for('groups_view') }}">Groups</a>
+              {% if g.user %}
+            <li><a href="{{ url_for('edit_profile') }}">profile</a>
+            <li><a href="{{ url_for('logout') }}">sign out [{{ g.user.name }}]</a>
+              {% else %}
+            <li><a href="{{ url_for('login') }}">sign in</a>
+              {% endif %}
+          </ul>
+        </div>
+      </div>
+
+ {% for message in get_flashed_messages() %}
+ <div class="messageblock">
+ <p class="message">{{ message }}
+ </div>
+{% endfor %}
+{% block body %}
+{% endblock %}
+    </div>
+
+  <!-- javascript and other scrips go here!!!>
+
+  </body>
+</html>

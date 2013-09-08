@@ -1,0 +1,192 @@
+body {
+    
+    background: #e9e9e9;
+    margin: 0;
+    font-family: Georgia, serif;
+    
+
+}
+body a {
+    text-decoration:none;
+    color:black;
+}
+.message {
+  text-align:center;
+  margin:auto;
+  background-color: lightblue;
+}
+
+.messageblock {
+    background-color: red;
+    border: solid 1px;
+
+}
+
+#grouptable {
+    width:500px;
+    height: 200px;
+    position:relative;
+    padding:0px;
+    text-align: left;
+    margin: 0 auto;
+    
+    
+}
+
+
+#form {
+    
+    position: relative;
+    margin-top:50px;
+    margin-left:100px;
+    padding-bottom:2%;
+    padding-right:0%;
+    padding-left:2%;
+    height: 400px;
+    width: 600px;
+    display: block;
+    
+}
+
+#form table{
+    margin-left:100px;
+    margin-top:50px;
+    margin-bottom:-10px;
+    border-spacing:20px 10px;
+    text-align: center;
+    
+    
+
+}
+
+#form table th {
+    font-style:bold;
+
+}
+
+#loginform {
+    position: relative;
+    margin: 2% auto;
+    padding-bottom:2%;
+    padding-right:0%;
+    padding-left:2%;
+    height: 400px;
+    width: 600px;
+    display: block;
+    
+    
+    
+}
+
+.loginformsuper {
+    text-align: center;
+    padding: 0;
+    margin:0;
+    margin-top: 10px;
+}
+
+
+.page {
+    width: 920px;
+    height: 1400px;
+    margin-top: 25px;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    background: #F0F8FF;
+    border-radius: 10px 10px 10px 10px;
+    border: solid 2px;
+    overflow:hidden;
+    position: relative;
+    
+   
+
+
+}
+
+.header {
+    width: 100%;
+    background:#bbbbbb; 
+    padding: 0px auto;
+    margin: 0px auto;    
+    border-bottom: solid 2px;
+    position: relative;
+    text-align: left;
+
+    
+}
+.header h1 {
+    margin: auto;
+    padding: 0px 0px 0px 5px;
+    font-size: 28px;
+    font-style: bold;
+}
+
+
+#menu {
+    
+    padding: 0px;
+    text-align: left;
+    bottom: 0px;
+    width: auto;
+    height: 50px;
+    background: #bbbbbb;
+    position: relative;
+}
+
+
+#menu ul {
+    background: #bbbbbb;
+    position: absolute;
+    bottom: -15px;
+    left: -35px;
+    
+    
+}
+
+
+#menu li {
+    display: inline-block;
+    background: #918d8e;
+    border-radius: 10px;
+    padding-right: 4px;
+    padding-left: 4px;
+    border: solid 1px;
+
+}
+
+
+
+#menu > ul > li a:link, #menu > ul > li a:visited {
+    
+    
+    text-decoration: none;
+    color: #000000;
+    font-weight: normal;
+    font-size: 14px;
+    
+
+}
+
+
+
+
+
+.article {
+    height: 100%;
+    margin-right: 20%;
+    overflow-y: auto;
+    margin: 10px 10px 10px 10px;
+
+
+}
+
+
+footer {
+    float:clear;
+
+
+
+}
+

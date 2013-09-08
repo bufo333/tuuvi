@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}Sign in{% endblock %}
+{% block body %}
+<div id="loginform">
+  <h2>Sign in Using your OpenID</h2>
+  <form action="" method=post>
+    {% if error %}<p class=error><strong>Error:</strong> {{ error }}</p>{% endif %}
+    <p>
+      OpenID:
+      <input type=text name=openid size=30>
+      <input type=submit value="Sign in">
+      <input type=hidden name=next value="{{ next }}">
+  </form>
+  </p>
+</div>
+
+<div id="oidlogo">
+  <p><a href="http://openid.net/get-an-openid/" target="_blank">Check <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/OpenID_logo.svg/320px-OpenID_logo.svg.png" length=475 width=125> to see if you already have an OpenID!</a>
+  </p>
+</div>
+
+
+
+</div>
+{% endblock %}

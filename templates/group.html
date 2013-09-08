@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block body %}
+<div id=form>
+{% if g.user %}
+
+{% endif %}
+
+
+
+<h1>{{ group.name  }} </h1>
+<h2>{{ group.description }}</h2>
+
+ <table>
+<tr>
+<th>members</th>
+<th>comments</th>
+<th>approved</th>
+</tr>
+<tr>
+{% for members in group.members %}
+<td>{{ members.name }}</td>
+<td>placeholder</td>
+<td>members.approved<td>
+</tr>
+{% endfor %}
+</table>
+
+
+
+
+
+{% endblock %}
