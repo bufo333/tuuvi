@@ -135,7 +135,7 @@ with a terrible URL which we certainly don't want.
     user = User.query.filter_by(openid=resp.identity_url).first()
 
     if user is not None:
-        flash(u'Successfully signed in')
+        flash(u'Successfully signed in', 'message')
         g.user = user
         return redirect(oid.get_next_url())
 
@@ -157,13 +157,13 @@ will redirect here so that the user can set up his profile.
         email = request.form['email']
 
         if not name:
-            flash(u'Error: you have to provide a name')
+            flash(u'Error: you have to provide a name', 'error')
 
         elif '@' not in email:
-            flash(u'Error: you have to enter a valid email address')
+            flash(u'Error: you have to enter a valid email address', 'error')
 
         else:
-            flash(u'Profile successfully created')
+            flash(u'Profile successfully created', 'message')
             db_session.add(User(name, email, session['openid']))
             db_session.commit()
             return redirect(oid.get_next_url())
@@ -197,9 +197,9 @@ def edit_profile():
             return redirect(url_for('edit_profile'))
 
         if not form['name']:
-            flash(u'Error: you have to provide a name')
+            flash(u'Error: you have to provide a name', 'error')
         elif '@' not in form['email']:
-            flash(u'Error: you have to enter a valid email address')
+            flash(u'Error: you have to enter a valid email address', error)
 
     return render_template('edit_profile.html', form=form)
 
@@ -306,15 +306,15 @@ def groups_post(page=1):
         user_id = g.user.id
 
         if not name:
-            flash(u'Error: you have to provide a name!')
+            flash(u'Error: you have to provide a name!', 'error')
             return redirect(url_for('groups_view', form=dict(name=name,desc=description)))
         elif not description:
-            flash(u'Error: you have to enter a valid description!')
+            flash(u'Error: you have to enter a valid description!', 'error')
             return redirect(url_for('groups_view', form=dict(name=name,desc=description)))
 
         db_session.add(Group(name,description,user_id,[g.user]))
         db_session.commit()
-        flash(u'You have sucessfully added a group')
+        flash(u'You have sucessfully added a group', 'message')
         return redirect(url_for('groups_view'))
 
     if 'delete' in request.form:
@@ -323,7 +323,7 @@ def groups_post(page=1):
             group=Group.query.filter_by(id=group).first()
             db_session.delete(group)
             db_session.commit()
-        flash(u'You have removed a group')
+        flash(u'You have removed a group', 'message')
         return redirect(url_for('groups_view',page=page))
 
 

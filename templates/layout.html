@@ -28,14 +28,19 @@
         </div>
       </div>
 
- {% for message in get_flashed_messages() %}
- <div class="messageblock">
- <p class="message">{{ message }}
- </div>
-{% endfor %}
-{% block body %}
-{% endblock %}
-    </div>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+      <div class="messageblock">
+        <p class="{{ category }}">{{ message }}
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+    {% block body %}
+    {% endblock %}
+</div>
 
   <!-- javascript and other scrips go here!!!>
 
